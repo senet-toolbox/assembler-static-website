@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Assembler</title>
+  <meta charset="utf-8" />
+  <meta name="google-site-verification" content="12aR_338F0VaglKbfvPLczdZV_Ej6AVx9Ef7M4ULfLU" />
+  <meta name="description" content="Senet Application" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/zig-out/bin/vapor.wasm" as="fetch" type="application/wasm" crossorigin />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap" rel="stylesheet" media="print"
+    onload="this.media='all'" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+
+  <!-- <script type="module" src="/web/wasi_obj.js"></script> -->
+  <script type="module" src="/web/bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Barlow", sans-serif;
+      font-optical-sizing: auto;
+      height: 100dvh;
+      width: 100%;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      background-color: rgba(var(--background));
+      color: rgb(var(--text_color));
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE/Edge */
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-scrollbar: display: none;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      /* Chrome, Safari, Opera */
+      margin: 0;
+    }
+
+    ::view-transition-group(*) {
+      animation-duration: 150ms;
+    }
+
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      /* animation: none; */
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    textarea,
+    input {
+      line-height: 1.5;
+      font-size-adjust: 0.5;
+      font-family: inherit;
+    }
+
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    div {
+      min-width: 0;
+    }
+
+    button p {
+      font-family: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+      min-width: 0;
+      box-sizing: border-box;
+      display: flex;
+      /* add these: */
+      padding: 0;
+      border: none;
+      background: none;
+      text-align: inherit;
+      appearance: none;
+    }
+
+
+
+    input[type="file"]::file-selector-button {
+      background: transparent;
+      color: transparent;
+      border: none;
+    }
+
+
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px transparent inset;
+      -webkit-text-fill-color: inherit;
+      caret-color: inherit;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .reload-indicator {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 6px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      z-index: 99999;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .reload-indicator.visible {
+      display: flex;
+    }
+
+    .reload-spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid #333;
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="/static/settings/style.css" />
+<link rel="stylesheet" href="/static/style_variables.css" /></head>
+
+<body>
+  <div id="reload-indicator" class="reload-indicator">
+    <div class="reload-spinner"></div>
+    <span>Reloading... <span id="reload-timer">0.0</span>s</span>
+  </div>
+  <main id="contents" style="display: contents"><div  id="Flex_S7ezG2-gk" class="lay_ihMZH4 pos_e8wtf3 mapa_CrkEb2 vis_2c8X11 ">
+<div  id="Flex_nuQjl1-gk" class="lay_aCcEh3 pos_e8wtf3 mapa_rPfvm1 vis_sO21Y1 ">
+<div  id="Flex_KEh2u1-gk" class="lay_Qbu0A4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_BDJQp3-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Grap_hzXf7-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_PGneh2 ">
+</div>
+</div>
+</div>
+<div  id="Flex_zvAPW-gk" class="lay_wqqBp1 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<button  id="CtxB_cbIZi3-gk" class="lay_O8DMU pos_t0s233 mapa_CrkEb2 vis_7SrQw2 intr_4WVqj1 "aria-label="Assembler">
+<div  id="nav-button-top-left" class="lay_XxTQF3 pos_VsJJg4 mapa_CrkEb2 vis_6Tr7C4 ">
+</div>
+<div  id="nav-button-top-right" class="lay_XxTQF3 pos_Nrwr42 mapa_CrkEb2 vis_PSmxi ">
+</div>
+<div  id="nav-button-bottom-left" class="lay_XxTQF3 pos_QekHN3 mapa_CrkEb2 vis_KuG9f1 ">
+</div>
+<div  id="nav-button-bottom-right" class="lay_XxTQF3 pos_yX3OZ1 mapa_CrkEb2 vis_3ChsN1 ">
+</div>
+<div  id="Flex_v88Ii-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<i  id="Icon_mzoNP1-gk" class="bi bi-cassette lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_ifJTG3 ">
+</i>
+</div>
+</button>
+<button  id="CtxB_3lpuC2-gk" class="lay_O8DMU pos_t0s233 mapa_CrkEb2 vis_HYE6D4 intr_TUaAf1 "aria-label="Planner">
+
+
+<div  id="Flex_zuOPe-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<i  id="Icon_NR5JC2-gk" class="bi bi-hammer lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_W3FHF2 ">
+</i>
+</div>
+</button>
+<button  id="CtxB_18Usc3-gk" class="lay_O8DMU pos_t0s233 mapa_CrkEb2 vis_HYE6D4 intr_TUaAf1 "aria-label="Playground">
+
+
+<div  id="Flex_sJJSf3-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<i  id="Icon_U8ykR-gk" class="bi bi-braces lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_W3FHF2 ">
+</i>
+</div>
+</button>
+<button  id="CtxB_TzrE71-gk" class="lay_O8DMU pos_t0s233 mapa_CrkEb2 vis_HYE6D4 intr_TUaAf1 "aria-label="Settings">
+
+
+<div  id="Flex_e5dVe3-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<i  id="Icon_47Xll2-gk" class="bi bi-gear lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_W3FHF2 ">
+</i>
+</div>
+</button>
+</div>
+</div>
+<div  id="Flex_TRHbF-gk" class="lay_L27Dg1 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_XU2EV1-gk" class="lay_o0nPh1 pos_e8wtf3 mapa_pT4FI4 vis_2c8X11 ">
+<div  id="Flex_3D1AA1-gk" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_32aDQ2-gk" class="lay_ZT9xM pos_t0s233 mapa_CrkEb2 vis_iltij ">
+<p  id="Text_e4uhC1-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_aJ19P1 tran_lmZrb1 ">S</p>
+</div>
+<div  id="Flex_6pCRU1-gk" class="lay_ZT9xM pos_t0s233 mapa_CrkEb2 vis_iltij ">
+<p  id="Text_jesZK3-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_aJ19P1 tran_lmZrb1 ">E</p>
+</div>
+<div  id="Flex_C8beD3-gk" class="lay_ZT9xM pos_t0s233 mapa_CrkEb2 vis_iltij ">
+<p  id="Text_TfJ4A3-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_aJ19P1 tran_lmZrb1 ">T</p>
+</div>
+<div  id="Flex_bfvyL3-gk" class="lay_ZT9xM pos_t0s233 mapa_CrkEb2 vis_iltij ">
+<p  id="Text_FOYwH3-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_aJ19P1 tran_lmZrb1 ">T</p>
+</div>
+<div  id="Flex_Av5jX4-gk" class="lay_ZT9xM pos_t0s233 mapa_CrkEb2 vis_iltij ">
+<p  id="Text_0dDb34-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_aJ19P1 tran_lmZrb1 ">I</p>
+</div>
+<div  id="Flex_QbHJM3-gk" class="lay_ZT9xM pos_t0s233 mapa_CrkEb2 vis_iltij ">
+<p  id="Text_hRTUR-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_aJ19P1 tran_lmZrb1 ">N</p>
+</div>
+<div  id="Flex_xHXuW3-gk" class="lay_ZT9xM pos_t0s233 mapa_CrkEb2 vis_iltij ">
+<p  id="Text_jhzZE4-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_aJ19P1 tran_lmZrb1 ">G</p>
+</div>
+<div  id="Flex_aZsT51-gk" class="lay_ZT9xM pos_t0s233 mapa_CrkEb2 vis_iltij ">
+<p  id="Text_5MAoU2-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_5SbFr1 vis_N1vSL2 tran_RVD8E1 ">S</p>
+</div>
+</div>
+<button  id="CtxB_WkjXS1-gk" class="lay_bBny01 pos_e8wtf3 mapa_VSOuc2 vis_zmxRx2 intr_jlJu72 ">
+<p  id="Text_sL2yT4-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_rHkJY4 ">Save</p>
+</button>
+</div>
+<div  id="Flex_BciiX4-gk" class="lay_6QOaL pos_e8wtf3 mapa_WM2Wg4 vis_SWFkJ2 ">
+<button  id="CtxB_PAf1h-gk" class="lay_kqSiJ4 pos_e8wtf3 mapa_VSOuc2 vis_ke3mr3 intr_pXXMT1 ">
+<p  id="Text_h1F5W2-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_rHkJY4 ">Login</p>
+</button>
+<div  id="Flex_hbph7-gk" class="lay_CIaFC pos_t0s233 mapa_CrkEb2 vis_qtSWz2 ">
+<label for="string_Flex_hbph7-gk"  id="Labe_hkuvR4-gk" style="transform: translateY(-50%) scale(1); z-index: 0; text-align: center;" class="lay_1I8dE4 pos_7GSMa1 mapa_sgnwh vis_32r2o1 ">Claude API Token</label>
+
+<input  id="string_Flex_hbph7-gk" class="lay_kSFpR4 pos_h7ld4 mapa_TK4ER4 vis_wH0KW3 "name=""/>
+
+</div>
+<div  id="Flex_ap3Iv2-gk" class="lay_CIaFC pos_t0s233 mapa_CrkEb2 vis_qtSWz2 ">
+<label for="string_Flex_ap3Iv2-gk"  id="Labe_apX6O4-gk" style="transform: translateY(-50%) scale(1); z-index: 0; text-align: center;" class="lay_1I8dE4 pos_7GSMa1 mapa_sgnwh vis_32r2o1 ">OpenAI API Token</label>
+
+<input  id="string_Flex_ap3Iv2-gk" class="lay_kSFpR4 pos_h7ld4 mapa_TK4ER4 vis_wH0KW3 "name=""/>
+
+</div>
+<div  id="Flex_dZWB03-gk" class="lay_CIaFC pos_t0s233 mapa_CrkEb2 vis_qtSWz2 ">
+<label for="password_Flex_dZWB03-gk"  id="Labe_LAyab4-gk" style="transform: translateY(-50%) scale(1); z-index: 0; text-align: center;" class="lay_1I8dE4 pos_7GSMa1 mapa_sgnwh vis_32r2o1 ">Gemini API Token</label>
+
+<input  id="password_Flex_dZWB03-gk" class="lay_kSFpR4 pos_h7ld4 mapa_TK4ER4 vis_wH0KW3 "name=""/>
+
+</div>
+<div  id="Flex_JYaAx2-gk" class="lay_CIaFC pos_t0s233 mapa_CrkEb2 vis_qtSWz2 ">
+<label for="password_Flex_JYaAx2-gk"  id="Labe_gk52x2-gk" style="transform: translateY(-50%) scale(1); z-index: 0; text-align: center;" class="lay_1I8dE4 pos_7GSMa1 mapa_sgnwh vis_32r2o1 ">GCP Project ID</label>
+
+<input  id="password_Flex_JYaAx2-gk" class="lay_kSFpR4 pos_h7ld4 mapa_TK4ER4 vis_wH0KW3 "name=""/>
+
+</div>
+<div  id="Flex_7FH4t2-gk" class="lay_CIaFC pos_t0s233 mapa_CrkEb2 vis_qtSWz2 ">
+<label for="string_Flex_7FH4t2-gk"  id="Labe_VSa1c1-gk" style="transform: translateY(-50%) scale(1); z-index: 0; text-align: center;" class="lay_1I8dE4 pos_7GSMa1 mapa_sgnwh vis_32r2o1 ">Vertex Access Token</label>
+
+<input  id="string_Flex_7FH4t2-gk" class="lay_kSFpR4 pos_h7ld4 mapa_TK4ER4 vis_wH0KW3 "name=""/>
+
+</div>
+</div>
+</div>
+<div  id="opaque-toast-stack" class="lay_eGDG91 pos_AUI0J mapa_CrkEb2 vis_PZYxz1 ">
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Assembler</title>
+  <meta charset="utf-8" />
+  <meta name="google-site-verification" content="12aR_338F0VaglKbfvPLczdZV_Ej6AVx9Ef7M4ULfLU" />
+  <meta name="description" content="Senet Application" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/zig-out/bin/vapor.wasm" as="fetch" type="application/wasm" crossorigin />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap" rel="stylesheet" media="print"
+    onload="this.media='all'" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+
+  <!-- <script type="module" src="/web/wasi_obj.js"></script> -->
+  <script type="module" src="/web/bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Barlow", sans-serif;
+      font-optical-sizing: auto;
+      height: 100dvh;
+      width: 100%;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      background-color: rgba(var(--background));
+      color: rgb(var(--text_color));
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE/Edge */
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-scrollbar: display: none;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      /* Chrome, Safari, Opera */
+      margin: 0;
+    }
+
+    ::view-transition-group(*) {
+      animation-duration: 150ms;
+    }
+
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      /* animation: none; */
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    textarea,
+    input {
+      line-height: 1.5;
+      font-size-adjust: 0.5;
+      font-family: inherit;
+    }
+
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    div {
+      min-width: 0;
+    }
+
+    button p {
+      font-family: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+      min-width: 0;
+      box-sizing: border-box;
+      display: flex;
+      /* add these: */
+      padding: 0;
+      border: none;
+      background: none;
+      text-align: inherit;
+      appearance: none;
+    }
+
+
+
+    input[type="file"]::file-selector-button {
+      background: transparent;
+      color: transparent;
+      border: none;
+    }
+
+
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px transparent inset;
+      -webkit-text-fill-color: inherit;
+      caret-color: inherit;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .reload-indicator {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 6px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      z-index: 99999;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .reload-indicator.visible {
+      display: flex;
+    }
+
+    .reload-spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid #333;
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="/style.css" />
+<link rel="stylesheet" href="/style_variables.css" /></head>
+
+<body>
+  <div id="reload-indicator" class="reload-indicator">
+    <div class="reload-spinner"></div>
+    <span>Reloading... <span id="reload-timer">0.0</span>s</span>
+  </div>
+  <main id="contents" style="display: contents"><div  id="Flex_S7ezG2-gk" class="lay_ihMZH4 pos_e8wtf3 mapa_CrkEb2 vis_2c8X11 ">
+<div  id="Flex_nuQjl1-gk" class="lay_aCcEh3 pos_e8wtf3 mapa_rPfvm1 vis_sO21Y1 ">
+<div  id="Flex_KEh2u1-gk" class="lay_Qbu0A4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_BDJQp3-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Grap_hzXf7-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_PGneh2 ">
+</div>
+</div>
+</div>
+<div  id="Flex_zvAPW-gk" class="lay_wqqBp1 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<button  id="CtxB_cbIZi3-gk" class="lay_O8DMU pos_t0s233 mapa_CrkEb2 vis_7SrQw2 intr_4WVqj1 "aria-label="Assembler">
+<div  id="nav-button-top-left" class="lay_XxTQF3 pos_VsJJg4 mapa_CrkEb2 vis_6Tr7C4 ">
+</div>
+<div  id="nav-button-top-right" class="lay_XxTQF3 pos_Nrwr42 mapa_CrkEb2 vis_PSmxi ">
+</div>
+<div  id="nav-button-bottom-left" class="lay_XxTQF3 pos_QekHN3 mapa_CrkEb2 vis_KuG9f1 ">
+</div>
+<div  id="nav-button-bottom-right" class="lay_XxTQF3 pos_yX3OZ1 mapa_CrkEb2 vis_3ChsN1 ">
+</div>
+<div  id="Flex_v88Ii-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<i  id="Icon_mzoNP1-gk" class="bi bi-cassette lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_ifJTG3 ">
+</i>
+</div>
+</button>
+<button  id="CtxB_3lpuC2-gk" class="lay_O8DMU pos_t0s233 mapa_CrkEb2 vis_HYE6D4 intr_TUaAf1 "aria-label="Planner">
+
+
+<div  id="Flex_zuOPe-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<i  id="Icon_NR5JC2-gk" class="bi bi-hammer lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_W3FHF2 ">
+</i>
+</div>
+</button>
+<button  id="CtxB_18Usc3-gk" class="lay_O8DMU pos_t0s233 mapa_CrkEb2 vis_HYE6D4 intr_TUaAf1 "aria-label="Playground">
+
+
+<div  id="Flex_sJJSf3-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<i  id="Icon_U8ykR-gk" class="bi bi-braces lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_W3FHF2 ">
+</i>
+</div>
+</button>
+<button  id="CtxB_TzrE71-gk" class="lay_O8DMU pos_t0s233 mapa_CrkEb2 vis_HYE6D4 intr_TUaAf1 "aria-label="Settings">
+
+
+<div  id="Flex_e5dVe3-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<i  id="Icon_47Xll2-gk" class="bi bi-gear lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_W3FHF2 ">
+</i>
+</div>
+</button>
+</div>
+</div>
+<div  id="Flex_TRHbF-gk" class="lay_3vXMD4 pos_e8wtf3 mapa_CrkEb2 vis_2c8X11 ">
+<div  id="Flex_XU2EV1-gk" class="lay_L27Dg1 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_3D1AA1-gk" class="lay_VocpV1 pos_e8wtf3 mapa_TK4ER4 vis_SWFkJ2 ">
+<button  id="CtxB_B82Jp2-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_q2k9R intr_IoJO6 "aria-label="Toggle Markdown">
+<i  id="Icon_xjFPJ2-gk" class="bi bi-filetype-md lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_N8Tfk ">
+</i>
+</button>
+<button  id="CtxB_XtLuX4-gk" class="lay_uvckf4 pos_e8wtf3 mapa_CrkEb2 vis_q2k9R intr_IoJO6 "aria-label="Toggle Code">
+<i  id="Icon_DLxN01-gk" class="bi bi-code-slash lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_N8Tfk ">
+</i>
+</button>
+</div>
+<div  id="Flex_4cH3z1-gk" class="lay_h7EqM1 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_l3X1B-gk" class="lay_g5IWf4 pos_e8wtf3 mapa_XZf5o vis_kDGRM4 ">
+<div  id="Flex_e3P8H-gk" class="lay_rrd882 pos_e8wtf3 mapa_CrkEb2 vis_4v66i1 ">
+<div  id="Flex_r8uSc2-gk" class="lay_Xf6QE3 pos_t0s233 mapa_CrkEb2 vis_zWcph ">
+<p  id="Text_mfa9k2-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_6xCVX2 tran_lmZrb1 "> </p>
+</div>
+<div  id="Flex_zkuqO2-gk" class="lay_EtZWc2 pos_t0s233 mapa_CrkEb2 vis_Ff3ZS ">
+<p  id="Text_TWnqh1-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_6xCVX2 tran_lmZrb1 ">A</p>
+</div>
+<div  id="Flex_8xD2W1-gk" class="lay_EtZWc2 pos_t0s233 mapa_CrkEb2 vis_Ff3ZS ">
+<p  id="Text_qPk4E1-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_6xCVX2 tran_lmZrb1 ">S</p>
+</div>
+<div  id="Flex_MYenO4-gk" class="lay_EtZWc2 pos_t0s233 mapa_CrkEb2 vis_Ff3ZS ">
+<p  id="Text_FCcC1-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_6xCVX2 tran_lmZrb1 ">S</p>
+</div>
+<div  id="Flex_gDeNE3-gk" class="lay_EtZWc2 pos_t0s233 mapa_CrkEb2 vis_Ff3ZS ">
+<p  id="Text_DPkA01-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_6xCVX2 tran_lmZrb1 ">E</p>
+</div>
+<div  id="Flex_y8u173-gk" class="lay_EtZWc2 pos_t0s233 mapa_CrkEb2 vis_Ff3ZS ">
+<p  id="Text_iog6N2-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_6xCVX2 tran_lmZrb1 ">M</p>
+</div>
+<div  id="Flex_dkrL52-gk" class="lay_EtZWc2 pos_t0s233 mapa_CrkEb2 vis_Ff3ZS ">
+<p  id="Text_GwfGF-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_6xCVX2 tran_lmZrb1 ">B</p>
+</div>
+<div  id="Flex_dMA9n-gk" class="lay_EtZWc2 pos_t0s233 mapa_CrkEb2 vis_Ff3ZS ">
+<p  id="Text_NGknY2-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_6xCVX2 tran_lmZrb1 ">L</p>
+</div>
+<div  id="Flex_kbVDU-gk" class="lay_EtZWc2 pos_t0s233 mapa_CrkEb2 vis_Ff3ZS ">
+<p  id="Text_CRrRG2-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_6xCVX2 tran_lmZrb1 ">E</p>
+</div>
+<div  id="Flex_59ZRO3-gk" class="lay_EtZWc2 pos_t0s233 mapa_CrkEb2 vis_Ff3ZS ">
+<p  id="Text_wmnHz2-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_WvWYZ4 tran_RVD8E1 ">R</p>
+</div>
+<div  id="Flex_Q3xNx1-gk" class="lay_Xf6QE3 pos_t0s233 mapa_CrkEb2 vis_zWcph ">
+<p  id="Text_8nrfl2-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_6xCVX2 tran_lmZrb1 "> </p>
+</div>
+<div  id="Flex_nlRT4-gk" class="lay_Xf6QE3 pos_t0s233 mapa_CrkEb2 vis_zWcph ">
+<p  id="Text_mh4r41-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_6xCVX2 tran_lmZrb1 "> </p>
+</div>
+</div>
+<div  id="Flex_TcoMA-gk" style="view-transition-name: myWidget" class="lay_zPBWW2 pos_e8wtf3 mapa_yudDG4 vis_ve0QV ">
+
+
+<textarea  id="Text_ernJy2-gk" style="field-sizing: content;" class="lay_wJitk pos_e8wtf3 mapa_CrkEb2 vis_AEDs32 "type="email"placeholder="Describe the Vapor component you want to build…"></textarea>
+
+<div  id="Flex_Wcmzu3-gk" class="lay_os1dJ pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_a1p5p2-gk" class="lay_LfISh3 pos_t0s233 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_AAM8M3-gk" class="lay_YXBsQ2 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_iUTD72-gk" class="lay_Z9MwV3 pos_e8wtf3 mapa_CrkEb2 vis_nvT7b intr_xJRAQ4 ">
+<input  id="Text_d6wge1-gk" class="lay_3TKw84 pos_h7ld4 mapa_CrkEb2 vis_OrTGL2 "type="file"/>
+
+<i  id="Icon_xqk7d2-gk" class="bi bi-plus-lg lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_qgrs52 ">
+</i>
+</div>
+<p  id="Text_jarAb2-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_96uD31 ">⌘↵ to generate</p>
+</div>
+<div  id="Flex_GaVjj1-gk" class="lay_R96wC3 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_3xS3N3-gk" class="lay_P4FSH pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_dmi0o-gk" class="lay_5u7LY1 pos_t0s233 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_X5DDq2-gk" class="lay_tupWc4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<button  id="CtxB_akWUN4-gk" class="lay_eVQKb3 pos_e8wtf3 mapa_RM5YV3 vis_66LIe intr_dB7Mn1 "aria-label="Select Dropdown">
+<div  id="Flex_UYrse-gk" class="lay_LfISh3 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<p  id="Text_mt5y83-gk" class="lay_jXzf62 pos_e8wtf3 mapa_RM5YV3 vis_d2KdQ1 ">claude-sonnet-4-6</p>
+<i  id="Icon_L1wa74-gk" class="bi bi-chevron-down lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_I8cxd4 ">
+</i>
+</div>
+</button>
+</div>
+<div  id="Flex_xYBR34-gk" class="lay_AEgkh1 pos_4MMng3 mapa_CrkEb2 vis_SWFkJ2 tran_akFuA3 ">
+
+
+</div>
+
+
+</div>
+</div>
+<button  id="CtxB_9TEfR4-gk" class="lay_aBPmR1 pos_e8wtf3 mapa_CrkEb2 vis_rJD2g intr_i9OQQ4 "aria-label="Submit Prompt">
+<i  id="Icon_Pj3Bv1-gk" class="bi bi-send lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_0vXmS2 ">
+</i>
+</button>
+<button  id="CtxB_BnVM9-gk" class="lay_Z9MwV3 pos_e8wtf3 mapa_CrkEb2 vis_YUrKU4 intr_i9OQQ4 "aria-label="Submit Prompt">
+<div  id="Grap_GAoIC2-gk" class="lay_Jt1Kh3 pos_e8wtf3 mapa_CrkEb2 vis_PGneh2 intr_yjnwI1 ">
+</div>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div  id="Flex_xlbXV4-gk" class="lay_OwXaT1 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<button  id="CtxB_af52c1-gk" class="lay_bBny01 pos_e8wtf3 mapa_qnAvC3 vis_r2Y0H3 intr_gFt3p "aria-label="assembler-btn">
+
+
+<p  id="Text_oyTnu2-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_PAUAr3 ">assembler</p>
+<p  id="Text_SzOYW4-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_Ck12M4 ">_ ⇒</p>
+</button>
+<button  id="CtxB_VConQ1-gk" class="lay_bBny01 pos_e8wtf3 mapa_qnAvC3 vis_vfVH61 intr_gFt3p "aria-label="orchastrate-btn">
+<i  id="Icon_o7EZ22-gk" class="bi bi-cassette lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_1cIAV ">
+</i>
+<p  id="Text_H8fWS1-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_PAUAr3 ">orchastrate</p>
+<p  id="Text_98oKP1-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_Ck12M4 ">_ ⇒</p>
+</button>
+<button  id="CtxB_grIN83-gk" class="lay_bBny01 pos_e8wtf3 mapa_qnAvC3 vis_IVKHe2 intr_gFt3p "aria-label="create-btn">
+<i  id="Icon_HFDtb2-gk" class="bi bi-code-slash lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_1cIAV ">
+</i>
+<p  id="Text_ZCWKK2-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_PAUAr3 ">create</p>
+<p  id="Text_iVPQw3-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_Ck12M4 ">_ ⇒</p>
+</button>
+<button  id="CtxB_owrvY2-gk" class="lay_bBny01 pos_e8wtf3 mapa_qnAvC3 vis_STrpg2 intr_gFt3p "aria-label="learn-btn">
+
+
+<p  id="Text_W0Vpe4-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_PAUAr3 ">learn</p>
+<p  id="Text_et59P4-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_Ck12M4 ">_ ⇒</p>
+</button>
+<button  id="CtxB_CsAGb3-gk" class="lay_bBny01 pos_e8wtf3 mapa_qnAvC3 vis_2qah31 intr_gFt3p "aria-label="model-btn">
+<i  id="Icon_Um5IS2-gk" class="bi bi-robot lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_1cIAV ">
+</i>
+<p  id="Text_mSUl6-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_PAUAr3 ">model</p>
+<p  id="Text_BH6Wv3-gk" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_Ck12M4 ">_ ⇒</p>
+</button>
+</div>
+<div  id="Flex_IAZte-gk" class="lay_bVAPL4 pos_e8wtf3 mapa_CrkEb2 vis_SWFkJ2 ">
+<div  id="Flex_4QC87-gk" class="lay_bpp05 pos_e8wtf3 mapa_j0VVX2 vis_SWFkJ2 ">
+<p  id="Text_YVQPA2-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_1R5NH2 ">Run History</p>
+<p  id="Text_et4SW3-gk" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ljJP03 ">No runs yet</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div  id="opaque-toast-stack" class="lay_eGDG91 pos_AUI0J mapa_CrkEb2 vis_PZYxz1 ">
+</div>
+</div>
+</div>
+</body>
+</html>
